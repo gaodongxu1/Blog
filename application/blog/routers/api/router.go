@@ -8,4 +8,5 @@ import (
 func init() {
 	beego.Router("/insert", &business.ArticleControllers{}, "post:Insert")
 	beego.Router("/read", &business.ArticleControllers{}, "post:ReadTitle")
+	beego.Router("/update", &business.ArticleControllers{}, "post:Update")
 }

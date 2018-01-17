@@ -62,12 +62,25 @@
 	 _, err := raw.Exec()
 	 return err
  }
-
+ // 查询文章
  func(read *ArticleServce) Read(title string) error {
 	o := orm.NewOrm()
-	var a []Article
+	var a[] Article    //查询出来有多个利用数组表示出来
+	//SELECT * FROM Blog.article where Status = 1
+
 	sql :="SELECT * FROM Blog.article where Status = 1"
-	_,err := o.Raw(sql).QueryRows(&a)//查询出来后需要显示(QueryRows(&a))
+	_,err := o.Raw(sql).QueryRows(&a)  //查询出来后需要显示(QueryRows(&a))
 	fmt.Printf("asd %v\n",a)
 	return err
  }
+
+ // 修改文章         
+func(updat *ArticleServce) Update(title string, content string, status int,id int) error {
+	o :=orm.NewOrm()
+	sql := "UPDATE Blog.article SET Title = ?, Content = ?, Status = ? WHERE Id = ? "
+	values := []interface{}{title, content, status, id}
+	raw := o.Raw(sql, values)
+	fmt.Printf("models更新值: %v\n",values)
+	_, err := raw.Exec()
+	return err
+} 
