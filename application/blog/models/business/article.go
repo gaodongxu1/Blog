@@ -41,10 +41,10 @@
  var AS *ArticleServce
  
  type Article struct {
-	 Id       int         `orm:"column(Id)"`
-	 Title    string      `orm:"column(Title)"`
-	 Content  string      `orm:"column(Content)"`
-	 Status   int         `orm:"column(Status)"`
+	 Id       int          `orm:"column(Id)"`
+	 Title    string       `orm:"column(Title)"`
+	 Content  string       `orm:"column(Content)"`
+	 Status   int          `orm:"column(Status)"`
 	 PublishedTime  string `orm:"column(PublishedTime)"`
  }
  
@@ -56,7 +56,7 @@
  func (insert *ArticleServce) Insert(title string, content string) error {
 	 o := orm.NewOrm()
  
-	 sql := "INSERT INTO Blog.article(title,content,PublishedTime,status)VALUES(?,?,?,0)"
+	 sql := "INSERT INTO Blog.article(title,content,PublishedTime,status)VALUES(?,?,?,1)"
 	 values := []interface{}{title, content,time.Now().Format("2006-01-02 15:04:05")}
 	 raw := o.Raw(sql, values)
 	 _, err := raw.Exec()
@@ -67,7 +67,7 @@
 	o := orm.NewOrm()
 	var a []Article
 	sql :="SELECT * FROM Blog.article where Status = 1"
-	_,err := o.Raw(sql).QueryRows(&a)
+	_,err := o.Raw(sql).QueryRows(&a)//查询出来后需要显示(QueryRows(&a))
 	fmt.Printf("asd %v\n",a)
 	return err
  }

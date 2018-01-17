@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	orm.InitMysql()
+	orm.InitMysql() //调用注册的数据库(orm)
 	beego.Run()
 }
 
