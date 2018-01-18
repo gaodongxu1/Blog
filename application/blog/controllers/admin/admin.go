@@ -34,9 +34,9 @@
 	 "github.com/astaxie/beego"
 	 "github.com/astaxie/beego/orm"
  
-	 . "github.com/TechCatsLab/mallServer/common"
-	 "github.com/TechCatsLab/mallServer/logger"
-	 . "github.com/TechCatsLab/mallServer/models/admin"
+	 . "github.com/gaodongxu1/Blog/application/blog/common"
+	  "github.com/gaodongxu1/Blog/application/blog/logger"
+	 . "github.com/gaodongxu1/Blog/application/blog/models/admin"
  )
  
  type AdminController struct {
