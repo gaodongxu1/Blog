@@ -31,7 +31,7 @@
  import (
 	 "github.com/astaxie/beego/orm"
  
-	 . "github.com/gaodongxu1/Blog/application/blog/common"
+	 _ "github.com/gaodongxu1/Blog/application/blog/common"
 	 . "github.com/gaodongxu1/Blog/application/blog/utility"
  )
  
@@ -104,36 +104,12 @@
 	 }
  }
  
- // 禁用用户账号
- func (this *AdminServiceProvider) Inactive(name string) error {
-	 o := orm.NewOrm()
- 
-	 sql := "UPDATE malluser.user SET active=? WHERE name=? LIMIT 1"
-	 values := []interface{}{InActive, name}
-	 raw := o.Raw(sql, values)
-	 _, err := raw.Exec()
- 
-	 return err
- }
- 
- // 激活用户账号
- func (this *AdminServiceProvider) Active(name string) error {
-	 o := orm.NewOrm()
- 
-	 sql := "UPDATE malluser.user SET active=? WHERE name=? LIMIT 1"
-	 values := []interface{}{Active, name}
-	 raw := o.Raw(sql, values)
-	 _, err := raw.Exec()
- 
-	 return err
- }
- 
  // 根据用户名查找用户是否存在
  func (this *AdminServiceProvider) IsUserExist(name string) error {
 	 o := orm.NewOrm()
 	 var id uint64
  
-	 err := o.Raw("SELECT id FROM malluser.user WHERE name=? LIMIT 1 LOCK IN SHARE MODE", name).QueryRow(&id)
+	 err := o.Raw("SELECT id FROM Blog.admin WHERE name=? LIMIT 1 LOCK IN SHARE MODE", name).QueryRow(&id)
  
 	 return err
  }

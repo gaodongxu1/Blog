@@ -43,7 +43,5 @@
 	 beego.Router("/admin/create", &admin.AdminController{}, "post:Create")	 
 	 beego.Router("/admin/login", &admin.AdminController{}, "post:Login")
 	 beego.Router("/admin/changepass", &admin.AdminController{}, "post:ChangePass")
-	 //beego.Router("/admin/user/inactive", &admin.AdminController{}, "post:Inactive")
-
  }
  

@@ -55,7 +55,6 @@
 	 fmt.Println("ssssss:", this.Ctx.Input.RequestBody, "error", err)
 	 if err != nil {
 		 logger.GlobalLogReporter.Error(err)//日志
- 
 		 this.Data["json"] = map[string]interface{}{RespKeyStatus: ErrInvalidParam}
 	 } else {
 		 fmt.Println("admin:", admin)
