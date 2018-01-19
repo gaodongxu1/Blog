@@ -29,6 +29,7 @@
  package admin
  
  import (
+	"fmt"
 	 "encoding/json"
  
 	 "github.com/astaxie/beego"
@@ -46,14 +47,19 @@
  // 添加管理员账号
  func (this *AdminController) Create() {
 	 var admin Manager
- 
+
+	fmt.Println(12345)
+
 	 err := json.Unmarshal(this.Ctx.Input.RequestBody, &admin)
- 
+
+	 fmt.Println("ssssss:", this.Ctx.Input.RequestBody, "error", err)
 	 if err != nil {
-		 logger.GlobalLogReporter.Error(err)
+		 logger.GlobalLogReporter.Error(err)//日志
  
 		 this.Data["json"] = map[string]interface{}{RespKeyStatus: ErrInvalidParam}
 	 } else {
+		 fmt.Println("admin:", admin)
+		 logger.GlobalLogReporter.Info("admin:", admin)
 		 err := AdminServer.Create(admin)
  
 		 if err != nil {

@@ -44,8 +44,8 @@
  // 添加类别
  func (this *ArticleControllers) Insert() {
 	 var article struct {
-		 Title    string
-		 Content  string
+		 Title    string `json:"title"`
+		 Content  string `json:"content"`
 	 }
  
 	 err := json.Unmarshal(this.Ctx.Input.RequestBody, &article)
@@ -60,23 +60,13 @@
 	 this.ServeJSON()
  }
  // 根据标题查找文章
- func(this *ArticleControllers) ReadTitle() {
-	 var Messages struct {
-		 Title string `json:"title"`
-	 }
-	 err := json.Unmarshal(this.Ctx.Input.RequestBody, &Messages)
+ func(this *ArticleControllers) ReadAll() {
 
-	 // error错误信息，如果error为空说明没错，不为空说明有错。
-	 if err != nil {
-		this.Data["json"] = map[string]interface{}{common.RespKeyStatus: "Title error"}
-	} else {
-		messages := models.AS.Read(Messages.Title)
-		if err != nil {
-			this.Data["json"] = map[string]interface{}{common.RespKeyStatus: common.ErrInvalidParam}
-		} else {
-			this.Data["json"] = map[string]interface{}{common.RespKeyData: messages}
-			fmt.Printf("显示结果: %v\n",Messages.Title)
-		}
+	a, err := models.AS.Read()
+	if err !=nil {
+		this.Data["json"] = map[string]interface{}{common.RespKeyStatus: common.ErrReqtAticle}
+	}  else {
+		this.Data["json"] = map[string]interface{}{common.RespKeyData: a}
 	}
 	this.ServeJSON()
  }

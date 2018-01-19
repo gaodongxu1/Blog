@@ -31,6 +31,7 @@
  const (
 	ErrSucceed       = 0  // 成功
 	ErrInvalidParam  = 1  // 参数错误
+	ErrReqtAticle    = 1  // 获取文章失败
 	ErrInvalidPerm   = 2  // 权限错误
 	ErrInvalidUser   = 3  // 用户不存在
 	ErrInactiveUser  = 4  // 用户被禁用
@@ -55,5 +56,4 @@
 
 	ErrMysqlQuery = 500 // MySQL 错误
 
-	ErrMongoDB = 600 // MongoDB 错误
 )

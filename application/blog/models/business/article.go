@@ -63,7 +63,7 @@
 	 return err
  }
  // 查询文章
- func(read *ArticleServce) Read(title string) error {
+ func(read *ArticleServce) Read() ([]Article,error) {
 	o := orm.NewOrm()
 	var a[] Article    //查询出来有多个利用数组表示出来
 	//SELECT * FROM Blog.article where Status = 1
@@ -71,7 +71,7 @@
 	sql :="SELECT * FROM Blog.article where Status = 1"
 	_,err := o.Raw(sql).QueryRows(&a)  //查询出来后需要显示(QueryRows(&a))
 	fmt.Printf("asd %v\n",a)
-	return err
+	return a, err
  }
 
  // 修改文章         

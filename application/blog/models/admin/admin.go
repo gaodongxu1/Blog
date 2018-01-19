@@ -43,9 +43,9 @@
  
  // 管理员
  type Manager struct {
-	 ID   uint64 `orm:"column(id)"`
-	 Name string
-	 Pass string
+	 ID   uint64   `orm:"column(id);pk"`
+	 Name string   `orm:"column(name)"  json:"name"`
+	 Pass string   `orm:"column(pass)"  json:"pass"`
  }
  
  // 添加管理员用户
@@ -60,7 +60,7 @@
 	 }
 	 password := string(hash)
  
-	 sql := "INSERT INTO business.manager(name,pass) VALUES (?,?)"
+	 sql := "INSERT INTO Blog.admin(name,password) VALUES (?,?)"
 	 values := []interface{}{user.Name, password}
 	 raw := o.Raw(sql, values)
 	 _, err = raw.Exec()
@@ -73,9 +73,9 @@
 	 o := orm.NewOrm()
 	 var pass string
  
-	 err := o.Raw("SELECT pass FROM business.manager WHERE name=? LIMIT 1 LOCK IN SHARE MODE", name).QueryRow(&pass)
+	 err := o.Raw("SELECT password FROM  Blog.admin WHERE name=? LIMIT 1 LOCK IN SHARE MODE", name).QueryRow(&pass)
  
-	 if err != nil {
+	 if err != nil { 
 		 return false, err
 	 } else if !CompareHash([]byte(pass), password) {
 		 return false, nil
@@ -95,7 +95,7 @@
 	 } else {
 		 password := string(hash)
  
-		 sql := "UPDATE business.manager SET pass=? WHERE name=? LIMIT 1"
+		 sql := "UPDATE Blog.admin SET password=? WHERE name=? LIMIT 1"
 		 values := []interface{}{password, name}
 		 raw := o.Raw(sql, values)
 		 _, err := raw.Exec()
