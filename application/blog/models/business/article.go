@@ -67,12 +67,12 @@
 	o := orm.NewOrm()
 	var a[] Article    //查询出来有多个利用数组表示出来
 	//SELECT * FROM Blog.article where Status = 1
-
 	sql :="SELECT * FROM Blog.article where Status = 1"
 	_,err := o.Raw(sql).QueryRows(&a)  //查询出来后需要显示(QueryRows(&a))
 	fmt.Printf("asd %v\n",a)
 	return a, err
  }
+ 
 
  // 修改文章         
 func(updat *ArticleServce) Update(title string, content string, status int,id int) error {

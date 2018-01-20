@@ -26,7 +26,7 @@ func createTable() {
 }
 
 func main() {
-mysql.InitMysql()
+ mysql.InitMysql()
  o := orm.NewOrm()
  o.Using("Blog")
  createTable()

@@ -13,9 +13,10 @@ CREATE TABLE IF NOT EXISTS `article` (
 
 
   CREATE TABLE IF NOT EXISTS `admin` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL UNIQUE ,
   `password` varchar(128) NOT NULL DEFAULT '',
   `created` datetime NOT NULL DEFAULT current_timestamp,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+ 

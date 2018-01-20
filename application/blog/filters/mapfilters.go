@@ -33,7 +33,7 @@
  func init() {
 	 MapFilter = make(map[string]interface{})
  
-	 // api
+	 //api
 	//  MapFilter["/read"] = struct{}{}
  
 	 // admin
